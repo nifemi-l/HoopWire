@@ -1,4 +1,3 @@
-```markdown
 # NBA News Messenger
 
 This project sends daily NBA news updates via email by using the ESPN API, and formats them into a neat, NBA-themed email.
