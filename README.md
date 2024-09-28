@@ -29,7 +29,7 @@ To run this project, ensure you have the following:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/***your-repo-url***
+   git clone https://github.com/https://github.com/nifemi-l/NBA-News-Messenger.git
    ```
 
 2. **Install required libraries**:
