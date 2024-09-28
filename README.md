@@ -48,7 +48,7 @@ To run this project, ensure you have the following:
 
 ## Running the Project
 
-To run the project manually, use the following command:
+To run the project manually, use the following command once in the correct directory:
 ```bash
 python main.py
 ```
@@ -57,17 +57,13 @@ python main.py
 
 You can customize the following parts of the project:
 
-- **Recipient Email**: Change the recipient email address in the `send_message` function in `send_msg.py`:
-  ```python
-  send_message('***recipient-email***', html_email, f"NBA News for {getUserName()} - {getDate()}")
-  ```
-- **User Name**: Change the user name in the `getUserName` function in `main.py`:
-  
+- **Recipient Email** and  **User Name**: Change the recipient email address in the `RECIPIENTS` dictionary in `main.py`:
+
 - **Email Schedule**: Adjust the schedule by changing the timing in **Task Scheduler** (Windows) or using **cron** (Linux/macOS).
 
 ## Troubleshooting
 
-- If you don't receive emails, double-check that your email credentials (App Password, email, etc.) are correct.
+- If you don't receive emails, double-check that your email credentials (App Password, email, etc.) are correct. Additionally, you should check your spam folder. 
 - Ensure that the email-sending feature works by running the script manually first. 
 - For setting up the App Password for Gmail, refer to this [guide](https://support.google.com/accounts/answer/185833).
 
