@@ -9,7 +9,7 @@ def makeRequest(url):
 
 def get_ordinal_suffix(day): 
     """Return the correct ordinal suffix for a given day."""
-    if 11 <= day <= 13: 
+    if 11 <= day <= 13:
         return "th"
     else: 
         # obtain the last digit in the int
@@ -32,7 +32,7 @@ def getDate():
     # return formatted date
     return f"{weekday}, {month} {day}{get_ordinal_suffix(day)}, {year}"
 
-def generateEmail(articles):
+def generateEmail(articles, user_name):
     """Return an NBA-styled HTML email."""
     # nba-styled html content
     html_content = f"""
@@ -53,7 +53,7 @@ def generateEmail(articles):
                 </div>
 
                 <!-- greeting and headline -->
-                <h2 style='color: black; text-align: center; font-size: 22px; margin-top: 10px;'>Hi {getUserName()}, here's today's NBA news</h2>
+                <h2 style='color: black; text-align: center; font-size: 22px; margin-top: 10px;'>Hi {user_name}, here's today's NBA news</h2>
                 <hr style="border: 1px solid #C9082A;">
                 <ul style='font-family: Arial, sans-serif; list-style-type: none; padding: 0;'>
     """
@@ -116,15 +116,13 @@ def generateEmail(articles):
 
     return html_content
 
-def getUserName(): 
-    """Return the name of the user."""
-    # change to user name ***
-    name = "Nifemi"
-    return name
-
 def main(): 
     # provide url to API endpoint
     url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/news"
+
+    # create the list of recipients *** (this should be changed)
+    RECIPIENTS = {
+    }
 
     # call function
     response = makeRequest(url) 
@@ -136,12 +134,15 @@ def main():
         # access list of articles
         articles = data.get("articles", [])
 
-        # generate HTML email content
-        html_email = generateEmail(articles)
+        # iterate through the list of recipients
+        for user_name, user_email in RECIPIENTS.items():
+            # generate HTML email content, pass user's name as arg
+            html_email = generateEmail(articles, user_name)
+
+            # use imported function to send the email
+            send_message(user_email, html_email, f"Today's NBA news ({getDate()})" )
+
     else: 
         print(f"Failed to retrieve data: {response.status_code}")
-
-    # use imported function to send the email *** (change recipient email in first argument)
-    send_message('lawalwaryth@gmail.com', html_email, f"Today's NBA news ({getDate()})" )
 
 main()
