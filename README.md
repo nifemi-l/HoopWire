@@ -5,7 +5,7 @@ This project sends daily NBA news updates via email by using the ESPN API, and f
 ## Features
 
 - Retrieves the latest NBA news from the ESPN API.
-- Sends a daily email at a scheduled time (e.g., 7 PM) with a neatly formatted HTML email, including links to articles and descriptions.
+- Sends a daily email at a scheduled time with a neatly formatted HTML email, including links to articles and descriptions.
 - NBA-themed design with the official logo, social media icons, and alternating background colors for each article.
 - Automatic scheduling opportunities using Windows Task Scheduler or other schedulers.
 
