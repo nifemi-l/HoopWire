@@ -13,7 +13,6 @@ This project sends daily NBA news updates via email by using the ESPN API, and f
 
 Below are screenshots of the email layout:
 
-### Example of the Email Layout
 ![NBA News Email - Top](Screenshots/SS%231.png)
 ![NBA News Email - Bottom](Screenshots/SS%232.png)
 
