@@ -29,7 +29,7 @@ To run this project, ensure you have the following:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/https://github.com/nifemi-l/NBA-News-Messenger.git
+   git clone Https://github.com/nifemi-l/NBA-News-Messenger.git
    ```
 
 2. **Install required libraries**:
@@ -44,7 +44,7 @@ To run this project, ensure you have the following:
    - `PASSWORD = "***your-app-password***"`
 
 4. **Scheduling the script to run automatically**:
-   - If you're using **Windows**, you can schedule the script using **Task Scheduler** to run every day at a specific time (e.g., 7 PM). 
+   - If you're using **Windows**, you can schedule the script using **Task Scheduler** to run daily at a specific time. 
    - Alternatively, use **cron jobs** for Linux/macOS.
 
 ## Running the Project
@@ -62,7 +62,7 @@ You can customize the following parts of the project:
   ```python
   send_message('***recipient-email***', html_email, f"NBA News for {getUserName()} - {getDate()}")
   ```
-- **User Name**: Change user name in the `getUserName` function in `main.py`:
+- **User Name**: Change the user name in the `getUserName` function in `main.py`:
   
 - **Email Schedule**: Adjust the schedule by changing the timing in **Task Scheduler** (Windows) or using **cron** (Linux/macOS).
 
