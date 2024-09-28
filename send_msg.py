@@ -1,8 +1,8 @@
 import smtplib
 from email.mime.text import MIMEText
 
-# enter email and gmail app password *** (change email and enter app password)
-EMAIL = "lawalwaryth@gmail.com"
+# enter email and your gmail app password ***
+EMAIL = ""
 PASSWORD = ""
 
 # create send message function
@@ -32,7 +32,7 @@ def send_message(recipient, message, subject=""):
 
         # send email to recipient  
         server.sendmail(auth[0], recipient, email_message.as_string())
-
+            
         # close the connection
         server.quit()
 
