@@ -9,7 +9,7 @@ def makeRequest(url):
 
 def get_ordinal_suffix(day): 
     """Return the correct ordinal suffix for a given day."""
-    if 11 <= day <= 13:
+    if 11 <= day <= 13: 
         return "th"
     else: 
         # obtain the last digit in the int
@@ -36,7 +36,14 @@ def generateEmail(articles, user_name):
     """Return an NBA-styled HTML email."""
     # nba-styled html content
     html_content = f"""
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- render the page using edge mode for IE -->
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>NBA Newsletter</title>
+        </head>
         <body style="font-family: Arial, sans-serif; background-color: #f0f0f0; padding: 20px;">
             <!-- outer container -->
             <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; 
