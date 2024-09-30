@@ -67,6 +67,10 @@ You can customize the following parts of the project:
 - Ensure that the email-sending feature works by running the script manually first. 
 - For setting up the App Password for Gmail, refer to this [guide](https://support.google.com/accounts/answer/185833).
 
+## Next Steps: 
+
+- **Check for dates:** If there is no new news, the email should indicate that instead of regurgitating the previous news. Or, stop sending emails on Sundays.
+
 ## License
 
 This project is licensed under the MIT License.
