@@ -32,7 +32,7 @@ def getDate():
     # return formatted date
     return f"{weekday}, {month} {day}{get_ordinal_suffix(day)}, {year}"
 
-def generateEmail(articles, user_name):
+def generateEmail(articles, user_name, message):
     """Return an NBA-styled HTML email."""
     # nba-styled html content
     html_content = f"""
@@ -60,7 +60,7 @@ def generateEmail(articles, user_name):
                 </div>
 
                 <!-- greeting and headline -->
-                <h2 style='color: black; text-align: center; font-size: 22px; margin-top: 10px;'>Hi {user_name}, here's today's NBA news</h2>
+                <h2 style='color: black; text-align: center; font-size: 22px; margin-top: 10px;'>{message}</h2>
                 <hr style="border: 1px solid #C9082A;">
                 <ul style='font-family: Arial, sans-serif; list-style-type: none; padding: 0;'>
     """
@@ -123,6 +123,15 @@ def generateEmail(articles, user_name):
 
     return html_content
 
+def checkDates(fetched_date): 
+    """Check the fetched and current date. Return T/F after checking for a match."""
+    # obtain the current date in the correct format
+    current_date = str(datetime.datetime.now()).split()[0]
+
+    # check to see if the fetched date is the same as the current date
+    # a fail here means there is no new data
+    return (current_date == fetched_date)
+
 def main(): 
     # provide url to API endpoint
     url = "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/news"
@@ -141,14 +150,23 @@ def main():
         # access list of articles
         articles = data.get("articles", [])
 
+        # get the create date, isolate for relevant indices and elements
+        create_date = articles[0]["categories"][0]["createDate"].split('T')[0]
+        
+        
         # iterate through the list of recipients
         for user_name, user_email in RECIPIENTS.items():
-            # generate HTML email content, pass user's name as arg
-            html_email = generateEmail(articles, user_name)
+            # check for any new information
+            if checkDates(create_date):
+                # generate HTML email content
+                html_email = generateEmail(articles, user_name, f"Hi {user_name}, here's today's NBA news")
+                # use imported function to send the email
+                send_message(user_email, html_email, f"Today's NBA news ({getDate()})")
 
-            # use imported function to send the email
-            send_message(user_email, html_email, f"Today's NBA news ({getDate()})" )
-
+            else: 
+                html_email = generateEmail(articles, user_name, f"Hi {user_name}, there's no news today, but here is a recap")
+                # use imported function to send the email, outlining fact that this is a recap/review
+                send_message(user_email, html_email, f"NBA News Review ({getDate()})")
     else: 
         print(f"Failed to retrieve data: {response.status_code}")
 
