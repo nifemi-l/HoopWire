@@ -123,6 +123,7 @@ def generateEmail(articles, user_name, message):
 
     return html_content
 
+# due to a change in the resource, this is no longer usable
 def checkDates(fetched_date): 
     """Check the fetched and current date. Return T/F after checking for a match."""
     # obtain the current date in the correct format
@@ -148,25 +149,15 @@ def main():
         data = response.json()
 
         # access list of articles
-        articles = data.get("articles", [])
-
-        # get the create date, isolate for relevant indices and elements
-        create_date = articles[0]["categories"][0]["createDate"].split('T')[0]
-        
+        articles = data.get("articles", [])        
         
         # iterate through the list of recipients
         for user_name, user_email in RECIPIENTS.items():
-            # check for any new information
-            if checkDates(create_date):
-                # generate HTML email content
-                html_email = generateEmail(articles, user_name, f"Hi {user_name}, here's today's NBA news")
-                # use imported function to send the email
-                send_message(user_email, html_email, f"Today's NBA news ({getDate()})")
+            # generate HTML email content
+            html_email = generateEmail(articles, user_name, f"Hi {user_name}, here's today's NBA news")
+            # use imported function to send the email
+            send_message(user_email, html_email, f"Today's NBA news ({getDate()})")
 
-            else: 
-                html_email = generateEmail(articles, user_name, f"Hi {user_name}, there's no news today, but here is a recap")
-                # use imported function to send the email, outlining fact that this is a recap/review
-                send_message(user_email, html_email, f"NBA News Review ({getDate()})")
     else: 
         print(f"Failed to retrieve data: {response.status_code}")
 
