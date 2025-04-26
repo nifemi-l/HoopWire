@@ -1,4 +1,4 @@
-# NBA News Messenger
+# HoopWire
 
 This tool sends daily NBA news updates via email by using the ESPN API, and formats them into a neat, NBA-themed email.
 
